@@ -1,10 +1,14 @@
 import { useLoaderData } from "react-router-dom";
 import { Card } from "../components/Cards";
 import "./Home.css";
+import BrandChart from "../components/BrandChart";
+import { transformBrandData } from "../utils/transformBrandData";
 
 export function HomePage() {
-    const fuel = useLoaderData();
+  const fuel = useLoaderData();
+  const stations = fuel.data || [];
   console.log(fuel);
+  const chartData = transformBrandData(stations, "E10");
   return (
     <>
       <div className="main-content">
@@ -29,12 +33,10 @@ export function HomePage() {
         </div>
         <div className="trend-graph-container">
           <div className="trend-graph">
-
+            <BrandChart data={chartData} />
           </div>
         </div>
-        <div className="list-container">
-
-        </div>
+        <div className="list-container"></div>
       </div>
     </>
   );

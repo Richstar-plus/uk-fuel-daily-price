@@ -1,9 +1,11 @@
-export function transformBrandData(stations) {
+export function transformBrandData(stations, fuelType = "E10") {
   const grouped = {};
 
   stations.forEach((station) => {
     const brand = station.brand;
-    const price = Number(station.price);
+    const price = station.prices?.[fuelType];
+
+    if (!price) return; // skip if fuel not available
 
     if (!grouped[brand]) {
       grouped[brand] = { total: 0, count: 0 };
@@ -15,6 +17,6 @@ export function transformBrandData(stations) {
 
   return Object.keys(grouped).map((brand) => ({
     brand,
-    price: grouped[brand].total / grouped[brand].count,
+    price: +(grouped[brand].total / grouped[brand].count).toFixed(2),
   }));
 }
