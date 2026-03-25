@@ -13,7 +13,7 @@ const router = createBrowserRouter([
       {
         path: "",
         element: <HomePage />,
-        loader: () => FuelLoader({type: "brand", brand: "Tesco"})
+        loader: () => FuelLoader()
       },
     ]
   },
