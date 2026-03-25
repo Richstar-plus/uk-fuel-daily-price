@@ -32,6 +32,20 @@ export function HomePage() {
           />
         </div>
         <div className="trend-graph-container">
+          <div className="trend-graph-search">
+            <select name="search" className="search-select">
+              <option value="search by fuel type">Search by Fuel Type</option>
+              <option value="search by location">Search by Location</option>
+            </select>
+            <div className="fuel-type-input-container">
+              <select name="fuel-type" className="fuel-type">
+                <option value="E10">E10</option>
+                <option value="SDV">SDV</option>
+                <option value="ULSP">E5</option>
+              </select>
+              <button className="search-btn">Search</button>
+            </div>
+          </div>
           <div className="trend-graph">
             <BrandChart data={chartData} />
           </div>

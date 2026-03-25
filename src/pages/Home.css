@@ -2,6 +2,8 @@
   margin: 20px;
   display: flex;
   flex-direction: column;
+  align-items: center;
+  justify-content: center;
   height: 100vh;
 }
 
@@ -20,7 +22,11 @@
   height: 32%;
   display: flex;
   justify-content: center;
+  background-color: white;
+  align-items: center;
   gap: 20px;
+  box-shadow: 0 0 10px 10px rgba(0, 0, 0, 0.075);
+  margin-bottom: 20px;
 }
 
 .trend-graph-container {
@@ -32,4 +38,57 @@
 .trend-graph-container .trend-graph {
   width: 745px;
   height: 100%;
+}
+
+.trend-graph-search {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 40%;
+  height: 40px;
+  padding: 10px;
+  margin: 20px 0;
+}
+
+.trend-graph-search .search-select {
+  width: 150px;
+  height: 30px;
+  border-radius: 5px;
+  background-color: rgb(30, 95, 180);
+  padding: 5px;
+  outline: none;
+  color: white;
+  border: none;
+}
+
+.fuel-type-input-container {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 150px;
+  height: 30px;
+  padding: 5px;
+}
+
+.fuel-type-input-container .fuel-type {
+  width: 150px;
+  height: 30px;
+  border-radius: 5px;
+  background-color: rgb(126, 176, 241);
+  padding: 5px;
+  outline: none;
+  color: white;
+  border: none;
+}
+
+
+.fuel-type-input-container .search-btn {
+  background-color: rgb(30, 95, 180);
+  color: white;
+  width: 80px;
+  height: 30px;
+  padding: 5px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
 }
