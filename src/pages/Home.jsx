@@ -2,12 +2,10 @@ import { useLoaderData } from "react-router-dom";
 import { Card } from "../components/Cards";
 import "./Home.css";
 import { TrendGraph } from "../components/TrendGraph";
-
-import { useState } from "react";
+import { Filter } from "../components/Filter";
 
 export function HomePage() {
-  const [filter, setFilter] = useState("");
-  const [filterValue, setFilterValue] = useState("");
+
 
 
 
@@ -37,60 +35,10 @@ export function HomePage() {
           />
         </div>
         <TrendGraph stations={stations} />
+        <Filter stations={stations} />
 
 
-        <div className="list-main-holder">
-          <div className="filter-select">
-            <select
-              name="filter"
-              value={filter}
-              onChange={(e) => setFilter(e.target.value)}
-            >
-              <option value="">Filter by...</option>
-              <option value="all">All Brands</option>
-              <option value="specific">Specific Brand</option>
-              <option value="fuel-type">Fuel Type</option>
-              <option value="station-status">Station Status</option>
-            </select>
 
-            {(filter === "specific" || filter === "fuel-type") && (
-              <div className="filter-input-container">
-                <select
-                  name="filter-type"
-                  className="filter-type"
-                  value={filterValue}
-                  onChange={(e) => setFilterValue(e.target.value)}
-                >
-                  <option value="">Select...</option>
-                  <option value="E10">E10</option>
-                  <option value="SDV">SDV</option>
-                  <option value="E5">E5</option>
-                </select>
-                <button className="search-btn">Search</button>
-              </div>
-            )}
-          </div>
-          <div className="list-container">
-            <div className="main-list-container">
-              <table className="station-list">
-                <thead>
-                  <tr>
-                    <th>Brand</th>
-                    <th>Address</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {stations.map((station) => (
-                    <tr key={station.id}>
-                      <td>{station.brand}</td>
-                      <td>{station.address}</td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
-            </div>
-          </div>
-        </div>
       </div>
     </>
   );
