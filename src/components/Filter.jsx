@@ -1,8 +1,31 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
-export function Filter({ stations }) {
+export function Filter() {
   const [filter, setFilter] = useState("");
   const [filterValue, setFilterValue] = useState("");
+  const [fuelData, setFuelData] = useState([]);
+  const [searchTrigger, setSearchTrigger] = useState(0);
+
+  useEffect(() => {
+    async function loadFuel() {
+      const result = await FuelLoader(filter, filterValue);
+      setFuelData(result.data || []);
+    }
+
+    // run immediately for these
+    if (filter === "all" || filter === "station-status") {
+      loadFuel();
+    }
+
+    // run only after search click
+    if (
+      (filter === "specific" || filter === "fuel-type") &&
+      searchTrigger > 0
+    ) {
+      loadFuel();
+    }
+  }, [filter, filterValue, searchTrigger]);
+
   return (
     <>
       <div className="list-main-holder">
@@ -28,11 +51,16 @@ export function Filter({ stations }) {
                 onChange={(e) => setFilterValue(e.target.value)}
               >
                 <option value="">Select...</option>
-                <option value="E10">E10</option>
+                <option value="Tesco">E10</option>
                 <option value="SDV">SDV</option>
                 <option value="E5">E5</option>
               </select>
-              <button className="search-btn">Search</button>
+              <button
+                className="search-btn"
+                onClick={() => setSearchTrigger((prev) => prev + 1)}
+              >
+                Search
+              </button>
             </div>
           )}
         </div>
@@ -46,7 +74,10 @@ export function Filter({ stations }) {
                 </tr>
               </thead>
               <tbody>
-                {stations.map((station) => (
+                {
+                  filter === "station-status" && console.log("Station Status Data:", fuelData)
+                }
+                {fuelData.map((station) => (
                   <tr key={station.id}>
                     <td>{station.brand}</td>
                     <td>{station.address}</td>
@@ -59,4 +90,64 @@ export function Filter({ stations }) {
       </div>
     </>
   );
+}
+
+async function FuelLoader(filter, filterValue) {
+  const BASE_URL =
+    "https://uk-daily-fuel-prices.p.rapidapi.com";
+
+  let endpoint = "";
+  try {
+    switch (filter) {
+      case "all":
+        endpoint =
+          "/api/petrol-prices/nearby?lat=53.3806457&lon=-1.46941&radius=5";
+        break;
+
+      case "specific":
+        endpoint = `/api/petrol-prices/brand/${filterValue}?page=5&limit=20`;
+        break;
+
+      case "fuel-type":
+        endpoint = `/api/petrol-prices/fuel-type/${filterValue}`;
+        break;
+
+      case "station-status":
+        endpoint = `/api/petrol-prices/status`;
+        break;
+
+      default:
+        endpoint =
+          "/api/petrol-prices/nearby?lat=53.3806457&lon=-1.46941&radius=5";
+    }
+
+    const response = await fetch(`${BASE_URL}${endpoint}`, {
+      method: "GET",
+      headers: {
+        "x-rapidapi-key": "dfeaf6ba79mshf4a5472af01a80dp1af4aejsnc39c76c478a8",
+        "x-rapidapi-host": "uk-daily-fuel-prices.p.rapidapi.com",
+        "Content-Type": "application/json",
+      },
+    });
+
+    console.log("STATUS:", response.status);
+
+    const data = await response.json();
+    console.log("DATA:", data);
+
+    if (!response.ok) {
+      throw new Response(
+        JSON.stringify({ message: data.message || "Failed request" }),
+        { status: response.status },
+      );
+    }
+
+    return data;
+  } catch (error) {
+    console.error("FETCH ERROR:", error);
+
+    throw new Response(JSON.stringify({ message: "Network or CORS error" }), {
+      status: 500,
+    });
+  }
 }

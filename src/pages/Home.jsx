@@ -5,10 +5,6 @@ import { TrendGraph } from "../components/TrendGraph";
 import { Filter } from "../components/Filter";
 
 export function HomePage() {
-
-
-
-
   const fuel = useLoaderData();
   const stations = fuel.data || [];
   console.log(fuel);
@@ -36,9 +32,6 @@ export function HomePage() {
         </div>
         <TrendGraph stations={stations} />
         <Filter stations={stations} />
-
-
-
       </div>
     </>
   );
