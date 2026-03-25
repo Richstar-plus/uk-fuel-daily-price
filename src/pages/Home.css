@@ -3,8 +3,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
-  height: 100vh;
+  height: 150vh;
 }
 
 .heading {
@@ -19,7 +18,7 @@
 
 .card-content {
   width: 90%;
-  height: 32%;
+  height: 20%;
   display: flex;
   justify-content: center;
   background-color: white;
@@ -33,11 +32,24 @@
   width: 90%;
   height: 300px;
   padding-left: 160px;
+  margin-bottom: 30px;
+}
+
+.trend-graph-title {
+  margin-bottom: 10px;
+}
+
+.trend-graph-contaner {
+  display: flex;
+  align-items: center;
+  gap: 20px;
 }
 
 .trend-graph-container .trend-graph {
-  width: 745px;
+  width: 450px;
   height: 100%;
+  background-color: white;
+  padding: 20px;
 }
 
 .trend-graph-search {
@@ -91,4 +103,40 @@
   border: none;
   border-radius: 5px;
   cursor: pointer;
+}
+
+.trend-list h5 {
+  color: rgb(49, 48, 48);
+  margin-bottom: 5px;
+}
+
+.station-list {
+  width: 90%;
+  height: 300px;
+  padding: 20px 10px;
+  background-color: white;
+  overflow-y: auto;
+}
+
+.station-list .td, th {
+  border: 1px solid #ddd;
+  padding: 8px;
+}
+
+tr:nth-child(even){background-color: #f2f2f2;}
+
+tr:hover {background-color: #ddd;}
+
+th {
+  padding-top: 5px;
+  padding-bottom: 5px;
+  text-align: left;
+  background-color: rgb(30, 95, 180);
+  color: white;
+  font-size: 13px;
+}
+
+td {
+  font-size: 14px;
+  padding: 3px;
 }

@@ -44,7 +44,7 @@ export async function FuelLoader() {
     //     endpoint = "/api/petrol-prices";
     // }
 
-    const response = await fetch("https://uk-daily-fuel-prices.p.rapidapi.com/api/petrol-prices/fuel-type/SDV", {
+    const response = await fetch("https://uk-daily-fuel-prices.p.rapidapi.com/api/petrol-prices/nearby?lat=53.3806457&lon=-1.46941&radius=5", {
       method: "GET",
       headers: {
         "x-rapidapi-key": "dfeaf6ba79mshf4a5472af01a80dp1af4aejsnc39c76c478a8",

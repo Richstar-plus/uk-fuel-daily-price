@@ -46,8 +46,33 @@ export function HomePage() {
               <button className="search-btn">Search</button>
             </div>
           </div>
-          <div className="trend-graph">
-            <BrandChart data={chartData} />
+          <div className="trend-graph-contaner">
+            <div className="trend-graph">
+              <div className="trend-graph-title">Brand Prices</div>
+              <BrandChart data={chartData} />
+            </div>
+            <div className="trend-list">
+              <h5>Brands and Address</h5>
+              <div className="station-list">
+                <table>
+                  <thead>
+                    <tr>
+                      <th>Brand</th>
+                      <th>Address</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {stations.map((station) => (
+                      <tr key={station.id}>
+                        <td>{station.brand}</td>
+                        <td>{station.address}</td>
+                      </tr>
+                    ))}
+
+                  </tbody>
+                </table>
+              </div>
+            </div>
           </div>
         </div>
         <div className="list-container"></div>
