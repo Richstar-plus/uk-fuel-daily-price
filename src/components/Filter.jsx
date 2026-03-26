@@ -42,7 +42,7 @@ export function Filter() {
             <option value="station-status">Station Status</option>
           </select>
 
-          {(filter === "specific" || filter === "fuel-type") && (
+          {filter === "specific" ? (
             <div className="filter-input-container">
               <select
                 name="filter-type"
@@ -67,7 +67,28 @@ export function Filter() {
                 Search
               </button>
             </div>
-          )}
+          ) : filter === "fuel-type" ? (
+            <div className="filter-input-container">
+              <select
+                name="filter-type"
+                className="filter-type"
+                value={filterValue}
+                onChange={(e) => setFilterValue(e.target.value)}
+              >
+                <option value="">Select...</option>
+                <option value="E5">E5</option>
+                <option value="SDV">SDV</option>
+                <option value="B7">B7</option>
+                <option value="E10">E10</option>
+              </select>
+              <button
+                className="search-btn"
+                onClick={() => setSearchTrigger((prev) => prev + 1)}
+              >
+                Search
+              </button>
+            </div>
+          ) : null}
         </div>
         <div className="list-container">
           <div className="main-list-container">
@@ -75,16 +96,39 @@ export function Filter() {
               <thead>
                 <tr>
                   <th>Brand</th>
+                  <th>Prices</th>
                   <th>Address</th>
                 </tr>
               </thead>
               <tbody>
-                {
-                  filter === "station-status" && console.log("Station Status Data:", fuelData.dataSourcesStatus)
-                }
+                {filter === "station-status" &&
+                  console.log(
+                    "Station Status Data:",
+                    fuelData.dataSourcesStatus,
+                  )}
                 {fuelData.map((station) => (
                   <tr key={station.brand + station.address + station.postcode}>
                     <td>{station.brand}</td>
+                    <td>
+                      <table className="price-table">
+                        <thead>
+                          <tr>
+                            <th>E5</th>
+                            <th>E10</th>
+                            <th>B7</th>
+                            <th>SDV</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr>
+                            <td>${(station.prices.E5 / 100).toFixed(2) || " - "}</td>
+                            <td>${(station.prices.E10 / 100).toFixed(2) || " - "}</td>
+                            <td>${(station.prices.B7 / 100).toFixed(2) || " - "}</td>
+                            <td>${(station.prices.SDV / 100).toFixed(2) || " -"}</td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </td>
                     <td>{station.address}</td>
                   </tr>
                 ))}
@@ -98,8 +142,7 @@ export function Filter() {
 }
 
 async function FuelLoader(filter, filterValue) {
-  const BASE_URL =
-    "https://uk-daily-fuel-prices.p.rapidapi.com";
+  const BASE_URL = "https://uk-daily-fuel-prices.p.rapidapi.com";
 
   let endpoint = "";
   try {

@@ -137,6 +137,15 @@ th {
   font-size: 13px;
 }
 
+.price-table th {
+  background-color: rgba(126, 176, 241, 0.425);
+  color: black;
+}
+
+.price-table td {
+  
+}
+
 td {
   font-size: 14px;
   padding: 3px;
