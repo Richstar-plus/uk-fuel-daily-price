@@ -16,7 +16,7 @@ export default function BrandChart({ data }) {
         <XAxis dataKey="brand"  />
         <YAxis />
         <Tooltip />
-        <Bar dataKey="price" />
+        <Bar dataKey="price" fill="#3b82f6" />
       </BarChart>
     </ResponsiveContainer>
   );

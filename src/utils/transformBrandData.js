@@ -17,6 +17,6 @@ export function transformBrandData(stations, fuelType = "E10") {
 
   return Object.keys(grouped).map((brand) => ({
     brand,
-    price: +(grouped[brand].total / grouped[brand].count).toFixed(2),
+    price: +((grouped[brand].total / grouped[brand].count) / 100).toFixed(2),
   }));
 }

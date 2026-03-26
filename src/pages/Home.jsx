@@ -7,7 +7,31 @@ import { Filter } from "../components/Filter";
 export function HomePage() {
   const fuel = useLoaderData();
   const stations = fuel.data || [];
-  console.log(fuel);
+
+  const e5Prices = stations
+    .map((station) => {
+      const price = station.prices?.E5;
+
+      if (!price) return null;
+
+      return {
+        price: Number(price / 100).toFixed(2),
+        station: station.brand,
+      };
+    })
+    .filter(Boolean);
+
+  const cheapest = e5Prices.reduce(
+    (min, curr) => (curr.price < min.price ? curr : min),
+    e5Prices[0],
+  );
+
+  const expensive = e5Prices.reduce(
+    (max, curr) => (curr.price > max.price ? curr : max),
+    e5Prices[0],
+  );
+  console.log(cheapest);
+  console.log(expensive);
   return (
     <>
       <div className="main-content">
@@ -19,15 +43,15 @@ export function HomePage() {
           <Card title="Diesel Price" price={1.3} className="btn" />
           <Card
             title="Cheapest Today"
-            price={0.8}
             className="others"
-            station="Jet Station, Leads"
+            station={cheapest.station}
+            price={cheapest.price}
           />
           <Card
             title="Most Expensive"
-            price={0.8}
+            price={expensive.price}
             className="others"
-            station="Jet Station, Leads"
+            station={expensive.station}
           />
         </div>
         <TrendGraph stations={stations} />
