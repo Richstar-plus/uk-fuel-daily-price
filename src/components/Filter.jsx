@@ -51,9 +51,14 @@ export function Filter() {
                 onChange={(e) => setFilterValue(e.target.value)}
               >
                 <option value="">Select...</option>
-                <option value="Tesco">E10</option>
-                <option value="SDV">SDV</option>
-                <option value="E5">E5</option>
+                <option value="Asda">Asda</option>
+                <option value="ESSO">ESSO</option>
+                <option value="Jet">Jet</option>
+                <option value="Morrisons">Morrisons</option>
+                <option value="SHELL">SHELL</option>
+                <option value="Sainsbury's">Sainsbury's</option>
+                <option value="TEXACO">TEXACO</option>
+                <option value="TESCO">TESCO</option>
               </select>
               <button
                 className="search-btn"
@@ -75,10 +80,10 @@ export function Filter() {
               </thead>
               <tbody>
                 {
-                  filter === "station-status" && console.log("Station Status Data:", fuelData)
+                  filter === "station-status" && console.log("Station Status Data:", fuelData.dataSourcesStatus)
                 }
                 {fuelData.map((station) => (
-                  <tr key={station.id}>
+                  <tr key={station.brand + station.address + station.postcode}>
                     <td>{station.brand}</td>
                     <td>{station.address}</td>
                   </tr>
