@@ -55,7 +55,7 @@ export function TrendGraph({ stations }) {
                 </thead>
                 <tbody>
                   {stations.map((station) => (
-                    <tr key={station.id}>
+                    <tr key={station.site_id}>
                       <td>{station.brand}</td>
                       <td>{station.address}</td>
                     </tr>

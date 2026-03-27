@@ -30,8 +30,6 @@ export function HomePage() {
     (max, curr) => (curr.price > max.price ? curr : max),
     e5Prices[0],
   );
-  console.log(cheapest);
-  console.log(expensive);
   return (
     <>
       <div className="main-content">
