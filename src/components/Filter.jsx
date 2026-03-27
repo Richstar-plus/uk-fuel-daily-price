@@ -40,7 +40,6 @@ export function Filter() {
             <option value="all">All Brands</option>
             <option value="specific">Specific Brand</option>
             <option value="fuel-type">Fuel Type</option>
-            <option value="station-status">Station Status</option>
           </select>
 
           {filter === "specific" ? (
