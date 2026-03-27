@@ -122,10 +122,10 @@ export function Filter() {
                         </thead>
                         <tbody>
                           <tr>
-                            <td>${(station.prices.E5 / 100).toFixed(2) || " - "}</td>
-                            <td>${(station.prices.E10 / 100).toFixed(2) || " - "}</td>
-                            <td>${(station.prices.B7 / 100).toFixed(2) || " - "}</td>
-                            <td>${(station.prices.SDV / 100).toFixed(2) || " -"}</td>
+                            <td>{(station.prices.E5 / 100).toFixed(2) || " - "}</td>
+                            <td>{(station.prices.E10 / 100).toFixed(2) || " - "}</td>
+                            <td>{(station.prices.B7 / 100).toFixed(2) || " - "}</td>
+                            <td>{(station.prices.SDV / 100).toFixed(2) || " -"}</td>
                           </tr>
                         </tbody>
                       </table>
