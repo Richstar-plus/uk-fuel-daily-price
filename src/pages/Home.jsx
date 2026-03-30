@@ -3,102 +3,16 @@ import { Card } from "../components/Cards";
 import "./Home.css";
 import { TrendGraph } from "../components/TrendGraph";
 import { Filter } from "../components/Filter";
+import { getFuelStats } from "../utils/fuelStat.js";
 
 export function HomePage() {
   const fuel = useLoaderData();
   const stations = fuel.data || [];
-
-  const e5Prices = stations
-    .map((station) => {
-      const price = station.prices?.E5;
-
-      if (!price) return null;
-
-      return {
-        price: Number(price / 100).toFixed(2),
-        station: station.brand,
-      };
-    })
-    .filter(Boolean);
-
-  const b7Prices = stations
-    .map((station) => {
-      const price = station.prices?.B7;
-
-      if (!price) return null;
-
-      return {
-        price: Number(price / 100).toFixed(2),
-        station: station.brand,
-      };
-    })
-    .filter(Boolean);
-
-  const e10Prices = stations
-    .map((station) => {
-      const price = station.prices?.E10;
-
-      if (!price) return null;
-
-      return {
-        price: Number(price / 100).toFixed(2),
-        station: station.brand,
-      };
-    })
-    .filter(Boolean);
-
-  const sdvPrices = stations
-    .map((station) => {
-      const price = station.prices?.SDV;
-
-      if (!price) return null;
-
-      return {
-        price: Number(price / 100).toFixed(2),
-        station: station.brand,
-      };
-    })
-    .filter(Boolean);
-
-  const sdvcheapest = sdvPrices.reduce(
-    (min, curr) => (curr.price < min.price ? curr : min),
-    sdvPrices[0],
-  );
-
-  const sdvexpensive = sdvPrices.reduce(
-    (max, curr) => (curr.price > max.price ? curr : max),
-    sdvPrices[0],
-  );
-
-  const e10cheapest = e10Prices.reduce(
-    (min, curr) => (curr.price < min.price ? curr : min),
-    e10Prices[0],
-  );
-
-  const e10expensive = e10Prices.reduce(
-    (max, curr) => (curr.price > max.price ? curr : max),
-    e10Prices[0],
-  );
-
-  const e5cheapest = e5Prices.reduce(
-    (min, curr) => (curr.price < min.price ? curr : min),
-    e5Prices[0],
-  );
-
-  const e5expensive = e5Prices.reduce(
-    (max, curr) => (curr.price > max.price ? curr : max),
-    e5Prices[0],
-  );
-
-  const b7cheapest = b7Prices.reduce(
-    (min, curr) => (curr.price < min.price ? curr : min),
-    b7Prices[0],
-  );
-
-  const b7expensive = b7Prices.reduce(
-    (max, curr) => (curr.price > max.price ? curr : max),
-    b7Prices[0],
-  );
+  const fuelStats = getFuelStats(stations);
+  const { cheapest: e5cheapest, expensive: e5expensive } = fuelStats.e5;
+  const { cheapest: b7cheapest, expensive: b7expensive } = fuelStats.b7;
+  const { cheapest: e10cheapest, expensive: e10expensive } = fuelStats.e10;
+  const { cheapest: sdvcheapest, expensive: sdvexpensive } = fuelStats.sdv;
   return (
     <>
       <div className="main-content">
