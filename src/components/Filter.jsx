@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { FuelLoader } from "../api/FuelFilterPrice";
+import { currencyFormatter } from "../utils/formatter.js";
 
 export function Filter() {
   const [filter, setFilter] = useState("");
@@ -26,6 +27,8 @@ export function Filter() {
       loadFuel();
     }
   }, [filter, filterValue, searchTrigger]);
+
+  const fuelTypes = ["E5", "E10", "B7", "SDV"];
 
   return (
     <>
@@ -113,18 +116,27 @@ export function Filter() {
                       <table className="price-table">
                         <thead>
                           <tr>
-                            <th>E5</th>
-                            <th>E10</th>
-                            <th>B7</th>
-                            <th>SDV</th>
+                            {(filter === "fuel-type" && filterValue
+                              ? [filterValue]
+                              : fuelTypes
+                            ).map((type) => (
+                              <th key={type}>{type}</th>
+                            ))}
                           </tr>
                         </thead>
+
                         <tbody>
                           <tr>
-                            <td>{(station.prices.E5 / 100).toFixed(2) || " - "}</td>
-                            <td>{(station.prices.E10 / 100).toFixed(2) || " - "}</td>
-                            <td>{(station.prices.B7 / 100).toFixed(2) || " - "}</td>
-                            <td>{(station.prices.SDV / 100).toFixed(2) || " -"}</td>
+                            {(filter === "fuel-type" && filterValue
+                              ? [filterValue]
+                              : fuelTypes
+                            ).map((type) => (
+                              <td key={type}>
+                                {station.prices?.[type]
+                                  ? (currencyFormatter.format(station.prices[type] / 100))
+                                  : "-"}
+                              </td>
+                            ))}
                           </tr>
                         </tbody>
                       </table>
@@ -140,4 +152,3 @@ export function Filter() {
     </>
   );
 }
-
