@@ -11,7 +11,7 @@ export function TrendGraph({ stations }) {
           <BrandChart data={chartData} />
         </div>
         <div className="trend-list">
-          <h5>Brands and Address</h5>
+          <h5>All Brands and Address</h5>
           <div className="station-list">
             <table>
               <thead>
