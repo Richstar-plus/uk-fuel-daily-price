@@ -1,4 +1,4 @@
-export function transformBrandData(stations, fuelType = "E10") {
+export function transformBrandData(stations, fuelType = "B7") {
   const grouped = {};
 
   stations.forEach((station) => {

@@ -17,19 +17,6 @@
   color: rgb(51, 51, 51);
 }
 
-.card-content {
-  width: 90%;
-  height: 20%;
-  display: flex;
-  justify-content: center;
-  background-color: white;
-  align-items: center;
-  gap: 20px;
-  box-shadow: 0 0 10px 10px rgba(0, 0, 0, 0.075);
-  margin-bottom: 20px;
-}
-
-
 
 .trend-graph-title {
   margin-bottom: 10px;

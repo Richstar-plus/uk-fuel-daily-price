@@ -1,32 +1,71 @@
-.card {
+.card-content {
+  width: 90%;
+  display: flex;
+  justify-content: center;
+  background-color: white;
+  align-items: center;
+  gap: 20px;
+  box-shadow: 0 0 10px 10px rgba(0, 0, 0, 0.075);
+  margin-bottom: 20px;
+  padding: 20px;
+}
+
+.fuel-grade-container .card {
   width: 170px;
-  height: 150px;
+  height: 200px;
+  border-radius: 10px;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+
+  background: linear-gradient(135deg, #5faaf5, #eef2ff);
+}
+
+.card-fuel-price-holder .card {
+  width: 120px;
+  height: 100px;
   border-radius: 10px;
   padding: 15px;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  background-color: white;
+
+  background: linear-gradient(135deg, #869aad, #eef2ff);
 }
 
-.card .title {
-  color: rgb(102, 102, 100);
+.card-fuel-price-holder {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+  margin-right: 50px;
+}
+
+.fuel-grade-container {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.fuel-grade-container .card .title {
+  color: rgb(153, 153, 2);
   margin: 10px 0;
 }
 
-.card .price {
+.fuel-grade-container .card .price {
   font-size: 30px;
   color: rgb(49, 48, 48);
   font-weight: bolder;
   margin-bottom: 10px;
 }
 
-.card .price span {
+.fuel-grade-container .card .price span {
   font-size: 18px;
 }
 
-.card .btn {
+.fuel-grade-container .card .btn {
   background-color: rgb(43, 94, 43);
   color: white;
   width: 100px;
@@ -35,8 +74,8 @@
   border-radius: 5px;
 }
 
-.card .others {
-  color: rgb(41, 40, 40);
+.fuel-grade-container .card .others {
+  color: rgb(119, 78, 2);
   width: 150px;
   height: 25px;
   border: none;
