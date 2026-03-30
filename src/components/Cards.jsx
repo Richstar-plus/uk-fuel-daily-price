@@ -1,7 +1,9 @@
 import "./Cards.css";
+import { currencyFormatter } from "../utils/formatter";
 
 export function Card({
   title,
+  price,
   e5price,
   e5station,
   b7price,
@@ -29,27 +31,27 @@ export function Card({
               <tr>
                 <td>{e5station}</td>
                 <td>E5</td>
-                <td>{e5price}</td>
+                <td>{currencyFormatter.format(e5price)}</td>
               </tr>
               <tr>
                 <td>{b7station}</td>
                 <td>B7</td>
-                <td>{b7price}</td>
+                <td>{currencyFormatter.format(b7price)}</td>
               </tr>
               <tr>
                 <td>{e10Station}</td>
                 <td>E10</td>
-                <td>{e10Price}</td>
+                <td>{currencyFormatter.format(e10Price)}</td>
               </tr>
               <tr>
                 <td>{sdvStation}</td>
                 <td>SDV</td>
-                <td>{sdvPrice}</td>
+                <td>{currencyFormatter.format(sdvPrice)}</td>
               </tr>
             </tbody>
           </table>
         ) : (
-          <p>price</p>
+          <p className="card-price">{currencyFormatter.format(price)}</p>
         )}
       </div>
     </div>

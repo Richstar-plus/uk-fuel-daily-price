@@ -4,10 +4,13 @@ import "./Home.css";
 import { TrendGraph } from "../components/TrendGraph";
 import { Filter } from "../components/Filter";
 import { getFuelStats } from "../utils/fuelStat.js";
+import { getFuelAverages } from "../utils/fuelAverage.js";
 
 export function HomePage() {
   const fuel = useLoaderData();
   const stations = fuel.data || [];
+  const fuelAverages = getFuelAverages(stations);
+  console.log("Fuel Averages:", fuelAverages);
   const fuelStats = getFuelStats(stations);
   const { cheapest: e5cheapest, expensive: e5expensive } = fuelStats.e5;
   const { cheapest: b7cheapest, expensive: b7expensive } = fuelStats.b7;
@@ -21,10 +24,10 @@ export function HomePage() {
         </div>
         <div className="card-content">
           <div className="card-fuel-price-holder">
-            <Card title="Petrol Price" price={1.45} />
-            <Card title="Diesel Price" price={1.3} />
-            <Card title="Diesel Price" price={1.3} />
-            <Card title="Diesel Price" price={1.3} />
+            <Card title="E5 Price" price={fuelAverages.e5} />
+            <Card title="E10 Price" price={fuelAverages.e10} />
+            <Card title="B7 Price" price={fuelAverages.b7} />
+            <Card title="SDV Price" price={fuelAverages.sdv} />
           </div>
           <div className="fuel-grade-container">
             <Card
