@@ -51,6 +51,7 @@
 .fuel-grade-container .card .title,
 .card-fuel-price-holder .title {
   color: rgb(85, 85, 2);
+  text-shadow: 3px 3px 3px rgba(0, 0, 0, 0.212);
   margin: 10px 0;
 }
 
