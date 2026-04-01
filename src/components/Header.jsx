@@ -7,7 +7,7 @@ export function Header() {
     <header className="header">
       <div className="logo">
         <h1>
-          <FontAwesomeIcon icon={faGasPump} /> UK Fuel Price
+          <FontAwesomeIcon icon={faGasPump} /> UK Daily Fuel Price
         </h1>
       </div>
       <div className="icon"></div>
